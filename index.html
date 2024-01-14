@@ -10,7 +10,15 @@
 <body>
 
     <header>
-        <h1 id="title">Card Archive</h1>
+        <h1 id="title">HOME</h1>
+        <div>
+            <form action="register.html">
+                <input type="submit" value="Register"></input>
+            </form>
+            <form action="login.html">
+                <input type="submit" value="Login"></input>
+            </form>
+        </div>
     </header>
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -28,17 +36,21 @@
         </div>
     </div>
     <nav>
-        <a href="mycards.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="mycards.html">My Cards</a>
-        <a href="index.html">Card Archive</a>
-    </nav>
-    <nav class="navsearch">
-        <h3>Search your card :</h3>
-        <input type="search" name="search" id="search" placeholder="search here">
+        <a href="collection.html">Card Archive</a>
     </nav>
 
-    <main id="cardContainer">
-        <div></div>
+
+    <main>
+        <div class="intro">
+            <p>Welcome to the Harry Potter Trading Card website !</p>
+            <p>Create your account to get started.</p>
+        <div>
+            <img src="https://images.ctfassets.net/usf1vwtuqyxm/71J6YPxNauhFABbjHpGluJ/631bd6980b0a430d5b476ef331abb2b5/release_1_hogwarts.png" alt="">
+        </div>
+
+        </div>
     </main>
 
     <footer>
@@ -49,7 +61,7 @@
         <p>Trading</p>
     </button>
 
-<script src="script.js"></script>
+<script src="scriptindex.js"></script>
 </body>
 
 </html>
