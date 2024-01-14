@@ -123,7 +123,6 @@ let hpCharacters = [];
 let hpList = [];
 let userList = [];
 const loadCharacters = async () => {
-    try {
         const res = await fetch('https://hp-api.onrender.com/api/characters');
         hpCharacters = await res.json();
         hpCharacters.forEach(element => {
@@ -132,14 +131,11 @@ const loadCharacters = async () => {
             }
         });
         displayCharacters(hpList);
-
-    } catch (err) {
-        console.error(err);
-    }
 };
 
 const displayCharacters = (characters) => {
     const htmlString = characters.map((character) => {
+    if(character.house==currentFilter || currentFilter=="none"){
     {
             return `
             <div class="card">
@@ -148,12 +144,42 @@ const displayCharacters = (characters) => {
             </div>
             <h2>${character.name}</h2>
             <h3>House: ${character.house}</h3>
+            <h3>Actor: ${character.actor}</h3>
             </div>
         `;
     }
-})
-        .join('');
+}})
+    .join('');
     cardContainer.innerHTML = htmlString;
 };
 
-loadCharacters();
+loadCharacters();1
+let currentFilter = "none";
+
+function changeTheme(name){
+    document.getElementById("nav").classList.toggle(currentFilter);
+    document.getElementById("main").classList.toggle(currentFilter);
+    document.getElementById("body").classList.toggle(currentFilter);
+    if(currentFilter==name){
+        currentFilter = "none";
+    } else{
+    currentFilter = name;
+    document.getElementById("nav").classList.toggle(currentFilter);
+    document.getElementById("main").classList.toggle(currentFilter);
+    document.getElementById("body").classList.toggle(currentFilter);
+    }
+    displayCharacters(hpList);
+}
+
+document.getElementById("Gryffindor").addEventListener("click", function() {
+    changeTheme("Gryffindor");
+});
+document.getElementById("Hufflepuff").addEventListener("click", function() {
+    changeTheme("Hufflepuff");
+});
+document.getElementById("Slytherin").addEventListener("click", function() {
+    changeTheme("Slytherin");
+});
+document.getElementById("Ravenclaw").addEventListener("click", function() {
+    changeTheme("Ravenclaw");
+});
