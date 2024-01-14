@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body id="body">
 
     <header>
         <h1 id="title">Card Archive</h1>
+        
     </header>
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -27,24 +28,30 @@
             </div>
         </div>
     </div>
-    <nav>
-        <a href="mycards.html">Home</a>
+    <nav id="nav">
+        <a href="index.html">Home</a>
         <a href="mycards.html">My Cards</a>
-        <a href="index.html">Card Archive</a>
+        <a href="collection.html">Card Archive</a>
     </nav>
     <nav class="navsearch">
         <h3>Search your card :</h3>
         <input type="search" name="search" id="search" placeholder="search here">
     </nav>
+    <main id="main">
+    <div class="houses">
+        <button type="button" id="Gryffindor">Gryffindor</button>
+        <button type="button" id="Hufflepuff">Hufflepuff</button>
+        <button type="button" id="Slytherin">Slytherin</button>
+        <button type="button" id="Ravenclaw">Ravenclaw</button>
 
-    <main id="cardContainer">
-        <div></div>
+    </div>
+    <div id="cardContainer" class="cardContainer">
+    </div>
     </main>
-
     <footer>
         &copy; 2024 Slapilou Harry Potter Card Website
     </footer>
-
+    
     <button class="floating-button" id="floating-button">
         <p>Trading</p>
     </button>
