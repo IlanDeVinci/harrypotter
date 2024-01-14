@@ -23,26 +23,59 @@ window.onclick = function(event) {
     }
   }
 
+let userList = [];
+let filteredCharacters = [];
+let filteredSortedList = [];
+let searchString = "";
+
 let searchBar = document.getElementById("search");
 searchBar.addEventListener('input', (e) => {
-    const searchString = e.target.value.toLowerCase();
-
-    const filteredCharacters = userList.filter((character) => {
-        return (
+    searchString = e.target.value.toLowerCase();
+    filteredCharacters = userList.filter((character) => {
+        if(character.house==currentFilter || currentFilter=="none"){
+            return (
             character.name.toLowerCase().includes(searchString) ||
-            character.house.toLowerCase().includes(searchString)
+            character.house.toLowerCase().includes(searchString) && 
+            character.house.toLowerCase().includes(currentFilter)
         );
-    });
-    displayCharacters(filteredCharacters);
+    }});
+    sortList(filteredCharacters);
 });
 
+function sortChars(){
+    if(searchString!=="" && currentFilter=="none"){} else{
+    filteredCharacters = userList.filter((character) => {
+        if(character.house==currentFilter || currentFilter=="none"){
+        return (
+            character.name.toLowerCase().includes(searchString) ||
+            character.house.toLowerCase().includes(searchString) &&
+            character.house.toLowerCase().includes(currentFilter)
+        );
+    }});
+    sortList(filteredCharacters);}
+}
 
+let favSort = [];
+let favNumber ;
+
+function sortList(list){
+    favSort = [];
+    let nonFavSort =[];
+    for(let i = 0 ; i < list.length ; i++ ){
+        if(list[i].alive=='fav'){
+            favSort.push(list[i]);
+        } else{
+            nonFavSort.push(list[i]);
+        }
+    }
+    favNumber = favSort.length;
+    filteredSortedList = favSort.concat(nonFavSort);    
+    displayChar(filteredSortedList);
+}
 
 let hpCharacters = [];
 let hpList = [];
-let userList = [];
 const loadCharacters = async () => {
-    try {
         const res = await fetch('https://hp-api.onrender.com/api/characters');
         hpCharacters = await res.json();
         hpCharacters.forEach(element => {
@@ -51,10 +84,6 @@ const loadCharacters = async () => {
             }
         });
         displayCharacters(userList);
-
-    } catch (err) {
-        console.error(err);
-    }
 };
 
 const displayCharacters = (characters) => {
@@ -106,7 +135,7 @@ boosterb.addEventListener("click", function(){
         let random2 = userList.length-Math.floor(Math.random()*3)-1
         userList[random2].eyeColour="legendary";
     }
-    displayChar(userList);
+    sortChars(userList);
 });
 
 const displayChar = (characters) => {
@@ -134,7 +163,7 @@ const displayChar = (characters) => {
         })
     })
     displayRare();
-    for(let i = 0; i<favList.length ; i++){
+    for(let i = 0; i<favNumber ; i++){
         document.getElementById(`heartc${i}`).classList.toggle("favorited");
     }
 }
@@ -152,13 +181,13 @@ function heart(element){
     let hid = element.id ;
     let num = hid.split("c").pop();
     num = parseInt(num);
-    if(userList[num].alive=="nofav"){
-        userList[num].alive="fav";}
+    if(filteredSortedList[num].alive=="nofav"){
+        filteredSortedList[num].alive="fav";}
     else{
-        userList[num].alive="nofav"
+        filteredSortedList[num].alive="nofav"
     }
-    sortUserlist();
-    displayChar(userList);
+    sortList(filteredSortedList);
+    console.log(element);
 }
 let favList = [];
 
@@ -172,6 +201,38 @@ function sortUserlist(){
             nonFavList.push(userList[i]);
         }
     }
-
+    favNumber = favList.length;
     userList = favList.concat(nonFavList);
+    displayChar(userList);
 }
+
+let currentFilter = "none";
+
+function changeTheme(name){
+    document.getElementById("nav").classList.toggle(currentFilter);
+    document.getElementById("main").classList.toggle(currentFilter);
+    document.getElementById("body").classList.toggle(currentFilter);
+    if(currentFilter==name){
+        currentFilter = "none";
+    } else{
+    currentFilter = name;
+    document.getElementById("nav").classList.toggle(currentFilter);
+    document.getElementById("main").classList.toggle(currentFilter);
+    document.getElementById("body").classList.toggle(currentFilter);
+    }
+    sortChars(userList);
+    console.log(currentFilter);
+}
+
+document.getElementById("Gryffindor").addEventListener("click", function() {
+    changeTheme("Gryffindor");
+});
+document.getElementById("Hufflepuff").addEventListener("click", function() {
+    changeTheme("Hufflepuff");
+});
+document.getElementById("Slytherin").addEventListener("click", function() {
+    changeTheme("Slytherin");
+});
+document.getElementById("Ravenclaw").addEventListener("click", function() {
+    changeTheme("Ravenclaw");
+});
