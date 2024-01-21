@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/3929e16ef5.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harry Potter</title>
+    <script src="https://kit.fontawesome.com/2e477fa156.js" crossorigin="anonymous"></script>    <title>Harry Potter</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -21,7 +20,15 @@
             <h2>Trading Interface</h2>
             </div>
             <div class="modal-body">
-            <p>Choose some card to trade</p>
+            <p>Choose some card to trade:</p>
+            <form>
+                <label for="card">Choose a card:</label>
+                <select id="cardchoose" name="cars">
+                  <option value="card">Card</option>
+                </select>
+                <input id="submitcard" type="submit">
+              </form>
+            <div id="showCard"></div>
             <p>Choose some user to trade with</p>
             </div>
             <div class="modal-footer">
@@ -41,12 +48,15 @@
     </nav>
 
     <main id="main">
+        <div>
+            <h2>Filter by house :</h2>
+        </div>
         <div class="houses">
             <button type="button" id="Gryffindor">Gryffindor</button>
             <button type="button" id="Hufflepuff">Hufflepuff</button>
             <button type="button" id="Slytherin">Slytherin</button>
             <button type="button" id="Ravenclaw">Ravenclaw</button>
-    
+            <button type="button" id="Nothing">Nothing</button>
         </div>
         <div id="cardContainer" class="cardContainer">
         </div>
@@ -61,6 +71,7 @@
     </button>
 
 <script src="scriptmycards.js"></script>
+<script type="module" src="database.js"></script>
 </body>
 
 </html>
