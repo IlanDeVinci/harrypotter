@@ -1,16 +1,11 @@
 "use strict"
 
 
-
 const cardContainer = document.getElementById('cardContainer');
 
 
 let modal = document.getElementById("modal");
 
-document.getElementById("floating-button").addEventListener("click", function(){
-    modal.style.display = "block";
-
-})
 
 document.querySelector("span").addEventListener("click", function(){
     modal.style.display = "none";
@@ -24,6 +19,7 @@ window.onclick = function(event) {
   }
 
 let userList = [];
+
 let filteredCharacters = [];
 let filteredSortedList = [];
 let searchString = "";
@@ -61,6 +57,11 @@ let favNumber ;
 function sortList(list){
     favSort = [];
     let nonFavSort =[];
+    list.forEach((character)=>{
+        if(character.species=="ciao"){
+            list.splice(list.indexOf(character),1)
+        }
+    })
     for(let i = 0 ; i < list.length ; i++ ){
         if(list[i].alive=='fav'){
             favSort.push(list[i]);
@@ -83,7 +84,12 @@ const loadCharacters = async () => {
                 hpList.push(element);
             }
         });
-        displayCharacters(userList);
+        hpList.forEach(element =>{
+            if(element.house==""){
+                element.house = "Nothing";
+            }
+        })
+        displayChar(userList);
 };
 
 const displayCharacters = (characters) => {
@@ -100,6 +106,7 @@ const displayCharacters = (characters) => {
             <h3>Actor: ${character.actor}</h3>
             <div class="h_container">
             <i id="heart" class="far fa-heart"></i>
+            <i class="fa-solid fa-xmark"></i>
             </div>
             </div>
             </div>
@@ -135,7 +142,15 @@ boosterb.addEventListener("click", function(){
         let random2 = userList.length-Math.floor(Math.random()*3)-1
         userList[random2].eyeColour="legendary";
     }
-    sortChars(userList);
+    searchBar.value = "";
+    searchString = "";
+    sortChars();
+    /*
+    
+    userList.forEach((character,i)=> {
+        localStorage.setItem(`card${i}`, JSON.stringify(character));
+    }
+    */
 });
 
 const displayChar = (characters) => {
@@ -150,22 +165,36 @@ const displayChar = (characters) => {
     <h3>House: ${character.house}</h3>
     <h3>Actor: ${character.actor}</h3>
     <h3>Rarity: ${character.eyeColour}</h3>
+    <div class="cardbuttons">
+    <div class="x_container" id="x${i}">
+    <i id="x" 
+    class="fa-solid fa-xmark"></i>
+    </div>
     <div class="h_container" id="heartc${i}">
     <i id="heart" class="far fa-heart"></i>
     </div>
     </div>
     </div>
+    </div>
     `});
+
     cardContainer.innerHTML = htmlString;
     document.querySelectorAll("div.h_container").forEach(x => {
         x.addEventListener('click',function(){
             heart(this);
         })
     })
+    document.querySelectorAll("div.x_container").forEach(x => {
+        x.addEventListener('click',function(){
+            ciao(this);
+        })
+    })
     displayRare();
     for(let i = 0; i<favNumber ; i++){
         document.getElementById(`heartc${i}`).classList.toggle("favorited");
     }
+    console.log(userList);
+    localStorage.setItem("cards", JSON.stringify(userList));
 }
 
 function displayRare() {
@@ -176,6 +205,18 @@ function displayRare() {
         element.classList.toggle("legendary");
     });
 }
+
+function ciao(element){
+    let xid = element.id ;
+    let num = xid.split("x").pop();
+    num = parseInt(num);
+    console.log(num);
+    filteredSortedList[num].species="ciao";
+    sortList(filteredSortedList);
+    sortUserlist();
+    console.log(element);
+}
+
 
 function heart(element){
     let hid = element.id ;
@@ -194,7 +235,13 @@ let favList = [];
 function sortUserlist(){
     favList = [];
     let nonFavList =[];
+    userList.forEach((character)=>{
+        if(character.species=="ciao"){
+            userList.splice(userList.indexOf(character),1)
+        }
+    })
     for(let i = 0 ; i < userList.length ; i++ ){
+
         if(userList[i].alive=='fav'){
             favList.push(userList[i]);
         } else{
@@ -203,15 +250,20 @@ function sortUserlist(){
     }
     favNumber = favList.length;
     userList = favList.concat(nonFavList);
-    displayChar(userList);
 }
 
 let currentFilter = "none";
 
 function changeTheme(name){
+    document.querySelectorAll("button").forEach(e => {
+        if(currentFilter==e.id && name !== e.id){
+            e.classList.toggle(currentFilter);
+        }
+    })
     document.getElementById("nav").classList.toggle(currentFilter);
     document.getElementById("main").classList.toggle(currentFilter);
     document.getElementById("body").classList.toggle(currentFilter);
+    document.getElementById(name).classList.toggle(name);
     if(currentFilter==name){
         currentFilter = "none";
     } else{
@@ -236,3 +288,42 @@ document.getElementById("Slytherin").addEventListener("click", function() {
 document.getElementById("Ravenclaw").addEventListener("click", function() {
     changeTheme("Ravenclaw");
 });
+document.getElementById("Nothing").addEventListener("click", function() {
+    changeTheme("Nothing");
+});
+
+if(typeof localStorage['cards'] !== 'undefined'){
+    userList = JSON.parse(localStorage.getItem("cards"));
+    sortChars(userList);
+    displayRare();
+    sortUserlist();
+}
+
+let cardChoose = document.getElementById("cardchoose");
+
+document.getElementById("floating-button").addEventListener("click", function(){
+    modal.style.display = "block";
+    let cardString = "";
+    userList.forEach((character,i)=> {cardString = `${cardString}
+    <option value="${i}">${character.name}, ${character.eyeColour}</option>
+    `});
+    cardChoose.innerHTML = cardString;
+})
+
+document.getElementById("submitcard").addEventListener("click", function(e){
+    e.preventDefault();
+    let cardValue = cardChoose.value;
+    let showCard = ` <div id="${userList[cardValue].eyeColour}" class="card">  
+    <div class="imgcard">
+    <img class ="cardimg" src="${userList[cardValue].image}"></img>
+    </div>
+    <div class="textcard">
+    <h2>${userList[cardValue].name}</h2>
+    <h3>House: ${userList[cardValue].house}</h3>
+    <h3>Actor: ${userList[cardValue].actor}</h3>
+    <h3>Rarity: ${userList[cardValue].eyeColour}</h3>
+    </div>
+    </div>`;
+    document.getElementById("showCard").innerHTML = showCard;
+    e.preventDefault();
+})
