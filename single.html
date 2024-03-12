@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <h1 id="title">Character Card</h1>
+        <div>
+            <form action="register.html">
+                <input type="submit" value="Register"></input>
+            </form>
+            <form action="login.html">
+                <input type="submit" value="Login"></input>
+            </form>
+        </div>
+    </header>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Trading Interface</h2>
+            </div>
+            <div class="modal-body">
+            <p>Choose some card to trade</p>
+            <p>Choose some user to trade with</p>
+            </div>
+            <div class="modal-footer">
+            <h3>Footer</h3>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="mycards.html">My Cards</a>
+        <a href="collection.html">Card Archive</a>
+    </nav>
+
+
+    <main>
+        <div id="character"></div>
+
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Slapilou Harry Potter Card Website
+    </footer>
+
+    <button class="floating-button" id="floating-button">
+        <p>Trading</p>
+    </button>
+
+    <script>
+        function fetchCharacter(){
+            let url = window.location.search
+            let slug = new URLSearchParams(url).get('slug')
+           return fetch('https://hp-api.lainocs.fr/characters/' + slug)
+           .then((response)=>response.json())
+        }
+        async function displayCharacter() {
+            const data = await fetchCharacter();
+            document.querySelector('#character').innerHTML =`
+                <h1>Name: ${data.name}</h1>
+                <img src="${data.image}" alt="${data.name}"</img>
+                <h2>House: ${data.house}</h2>
+                <h2>Actor: ${data.actor}</h2>
+                <h2>Blood: ${data.blood}</h2>
+                <h2>Patronus: ${data.patronus}</h2>
+                <h2>Role: ${data.role}</h2>
+                <h2>Wand: ${data.wand}</h2>
+
+
+                <a href="mycards.html">Back</a>
+            `
+            console.log(data);
+        }
+        displayCharacter()
+    </script>
+</body>
+</html>
