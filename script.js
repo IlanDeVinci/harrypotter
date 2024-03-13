@@ -43,6 +43,11 @@ const loadCharacters = async () => {
             if(element.image){
                 hpList.push(element);
             }
+            hpList.forEach(element =>{
+                if(element.house==""){
+                    element.house = "Nothing";
+            }})
+
         });
         displayCharacters(hpList);
 };
@@ -53,12 +58,16 @@ const displayCharacters = (characters) => {
     {
             return `
             <div class="card">
-            <div class="imgcard">
-            <img class ="cardimg" src="${character.image}"></img>
-            </div>
-            <h2>${character.name}</h2>
-            <h3>House: ${character.house}</h3>
-            <h3>Actor: ${character.actor}</h3>
+                <div class="imgcard">
+                    <a href="single.html?slug=${character.slug}">
+                        <img class ="cardimg" src="${character.image}"></img>
+                    </a>
+                </div>
+                <div class="textcard">
+                    <h2>${character.name}</h2>
+                    <h3>House: ${character.house}</h3>
+                    <h3>Actor: ${character.actor}</h3>
+                </div>
             </div>
         `;
     }
@@ -74,7 +83,7 @@ const displayCharacters = (characters) => {
 }
 
 
-loadCharacters();1
+loadCharacters();
 let currentFilter = "none";
 
 function changeTheme(name){
@@ -104,3 +113,18 @@ document.getElementById("Slytherin").addEventListener("click", function() {
 document.getElementById("Ravenclaw").addEventListener("click", function() {
     changeTheme("Ravenclaw");
 });
+document.getElementById("Nothing").addEventListener("click", function() {
+    changeTheme("Nothing");
+});
+
+
+const burgerIcon =document.getElementById("burgericon");
+const menu = document.getElementById('menu');
+
+burgerIcon.addEventListener('click', function() {
+burgerIcon.classList.toggle('menuout');
+menu.classList.toggle('active');
+document.getElementById("home").classList.toggle('hide');
+document.getElementById("mycards").classList.toggle('hide');
+document.getElementById("archive").classList.toggle('hide');
+})
