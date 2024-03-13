@@ -114,3 +114,14 @@ window.onclick = function(event) {
     }
   }
 
+
+  const burgerIcon =document.getElementById("burgericon");
+  const menu = document.getElementById('menu');
+  
+  burgerIcon.addEventListener('click', function() {
+  burgerIcon.classList.toggle('menuout');
+  menu.classList.toggle('active');
+  document.getElementById("home").classList.toggle('hide');
+  document.getElementById("mycards").classList.toggle('hide');
+  document.getElementById("archive").classList.toggle('hide');
+  })
