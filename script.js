@@ -65,7 +65,14 @@ const displayCharacters = (characters) => {
 }})
     .join('');
     cardContainer.innerHTML = htmlString;
-};
+    let i = 0;
+    document.querySelectorAll(".card").forEach(element => {
+        i++
+        setTimeout(function fade(){element.classList.add("fade")},100*i);
+        ;
+    });
+}
+
 
 loadCharacters();1
 let currentFilter = "none";
