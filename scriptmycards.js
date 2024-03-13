@@ -194,8 +194,13 @@ const displayChar = (characters) => {
     for(let i = 0; i<favNumber ; i++){
         document.getElementById(`heartc${i}`).classList.toggle("favorited");
     }
-    console.log(userList);
     localStorage.setItem("cards", JSON.stringify(userList));
+    let i = 0;
+    document.querySelectorAll(".card").forEach(element => {
+        i++
+        setTimeout(function fade(){element.classList.add("fade")},100*i);
+        ;
+    });
 }
 
 function displayRare() {
@@ -211,11 +216,9 @@ function ciao(element){
     let xid = element.id ;
     let num = xid.split("x").pop();
     num = parseInt(num);
-    console.log(num);
     filteredSortedList[num].delete="ciao";
     sortList(filteredSortedList);
     sortUserlist();
-    console.log(element);
 }
 
 
@@ -229,7 +232,6 @@ function heart(element){
         filteredSortedList[num].favorite="nofav"
     }
     sortList(filteredSortedList);
-    console.log(element);
 }
 let favList = [];
 
@@ -274,7 +276,6 @@ function changeTheme(name){
     document.getElementById("body").classList.toggle(currentFilter);
     }
     sortChars(userList);
-    console.log(currentFilter);
 }
 
 document.getElementById("Gryffindor").addEventListener("click", function() {
@@ -332,3 +333,4 @@ document.getElementById("submitcard").addEventListener("click", function(e){
     document.getElementById("showCard").innerHTML = showCard;
     e.preventDefault();
 })
+
