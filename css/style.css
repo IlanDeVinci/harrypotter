@@ -2,6 +2,11 @@
   display: none;
 }
 
+#booster{
+  padding: 2%;
+  font-family: HARRYP;
+  font-size: 3rem;
+}
 
 body {
     font-family: 'Arial', sans-serif;
@@ -11,6 +16,8 @@ body {
     width: 100%;
 }
 #title{
+  font-family: HARRYP;
+  font-size: 3rem;
   border: 2px solid white;
   border-radius: 20px;
   padding: 1%;
@@ -24,19 +31,31 @@ main div img{
   width: 100%;
 }
 
+.frontimage{
+  border-radius: 5vw;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
 
 form {
+  padding: 1%;
   width: 100%;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .form{
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  border-radius: 5vw;
+  background-color: darkgray;
+  width: 69%;
 }
-form input{
-  width: 90%;
+#form input{
+  width: 50%;
   border-radius: 10px;
 }
 
@@ -85,6 +104,7 @@ option{
 }
 
 .cardbuttons{
+  align-self: center;
   display: flex;
   height: 40px;
   width: 300px;
@@ -95,30 +115,35 @@ option{
 .h_container{
   background-color: #383838;
   border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  width:35px;
-  height:35px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.8);
+  width:36px;
+  height:36px;
   text-align:center;
   line-height:45px;
   padding: 1%;
   margin: 1%;
-
+  transition: all 0.5s;
 }
 
+.h_container:hover{
+  opacity: 0.7;
+}
 
 .x_container{
   background-color: #383838;
   border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  width:35px;
-  height:35px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.8);
+  width:36px;
+  height:36px;
   text-align:center;
   line-height:45px;
   padding: 1%;
   margin: 1%;
-
+  transition: all 0.5s;
 }
-
+.x_container:hover{
+  opacity: 0.7;
+}
 #x{
   align-self: flex-end;
   color: white;
@@ -143,6 +168,8 @@ option{
 }
 
 header form input{
+  font-size: 1.5vw;
+  border-radius: 10px;
   margin: 10px;
   padding: 10px;
   border: 0.25rem solid grey ;
@@ -176,11 +203,12 @@ nav input{
   
 }
 nav a {
+    font-family: HARRYP;
+    font-size: 2rem;
     color: white;
     text-decoration: none;
     padding: 10px;
     margin: 10px 10px;
-    font-weight: bold;
 	  box-shadow: 0px 0px 10px #000000;
     transition: all 0.5s;
     border-radius: 10px;
@@ -221,14 +249,16 @@ nav button{
 }
 
 nav button:hover{
-  background-color: white;
+  opacity: 0.5;
 }
 
 main {
+    justify-content: center;
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-evenly;
-    padding: 20px;
+    padding-top: 20px;
     margin-bottom: 50px;
     background-color: #e3e3e3;
 }
@@ -248,8 +278,9 @@ main {
 }
 
 .houses{
-  width: 100%;
-  padding: 3%;
+  width: 90%;
+  padding-top: 1%;
+  padding-bottom: 1%;
   background-color: #530000;
   border: 5px solid #000;
   border-radius: 30px;
@@ -260,8 +291,10 @@ main {
 }
 
 .houses button{
+  font-family: HARRYP;
+  font-size: 2.5rem;
   padding: 2%;
-  width: 19%;
+  width: 17%;
   border-radius: 30px;
   transition: all 0.2s;
 }
@@ -271,19 +304,24 @@ main {
 }
 
 .card {
-    width: 300px;
+    border: solid black;
+    width: 350px;
     height: 600px;
     background-color: rgb(255, 255, 255);
     margin: 1vw;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    opacity: 1;
+    opacity: 0;
     
     /* Add animation properties */
-    animation: fadeIn 0.5s ease-in; 
+}
+
+.card.fade{
+  animation: fadeIn 0.5s ease-in; 
+  opacity: 1;
 }
 
 @keyframes fadeIn {  
@@ -313,28 +351,39 @@ main {
 }
 .imgcard a{
   width: 100%;
+  border: 0.7rem double black ;
+  border-radius: 10px;
 }
 .cardimg{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+
+    object-fit: contain;
     border-radius: 10px;
 }
 
-
-.card h2 {
-    font-size: 1.5em;
-    margin-bottom: 5px;
+@font-face {
+  font-family: HARRYP;
+  src: url('HARRYP__.TTF');
 }
 
-.card p {
-    font-size: 1em;
-    color: #555;
+.card h2 {
+    font-family: HARRYP;
+    font-size: 3.2rem;
+    margin-top: 0px;
+    margin-bottom: -20px;
+}
+
+.card h3 {
+   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+   padding: 2%;
+   font-size: 1em;
+   color: #0c0c0c;
 }
 
 #character{
   background-color: #c4c4c4;
-  border-radius: 300px;
+  border-radius: 5vw;
   text-align: center;
   padding: 1%;
 }
