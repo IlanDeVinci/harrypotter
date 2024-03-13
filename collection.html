@@ -29,9 +29,18 @@
         </div>
     </div>
     <nav id="nav">
-        <a href="index.html">Home</a>
-        <a href="mycards.html">My Cards</a>
-        <a href="collection.html">Card Archive</a>
+        <div class="burger-menu">
+            <div class="burger-icon" id="burgericon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="menu" id="menu">
+                <a href="index.html" id="home">Home</a>
+                <a href="mycards.html" id="mycards">My Cards</a>
+                <a href="collection.html" id="archive">Card Archive</a>
+            </ul>
+        </div>
     </nav>
     <nav class="navsearch">
         <h3>Search your card :</h3>
@@ -43,6 +52,8 @@
         <button type="button" id="Hufflepuff">Hufflepuff</button>
         <button type="button" id="Slytherin">Slytherin</button>
         <button type="button" id="Ravenclaw">Ravenclaw</button>
+        <button type="button" id="Nothing">Nothing</button>
+
 
     </div>
     <div id="cardContainer" class="cardContainer">
@@ -53,7 +64,7 @@
     </footer>
     
     <button class="floating-button" id="floating-button">
-        <p>Trading</p>
+        Trading
     </button>
 
 <script src="script.js"></script>
