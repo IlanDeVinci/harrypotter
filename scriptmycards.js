@@ -92,30 +92,6 @@ const loadCharacters = async () => {
         displayChar(userList);
 };
 
-const displayCharacters = (characters) => {
-    const htmlString = characters.map((character) => {
-    {
-            return `
-            <div class="card">
-            <div class="imgcard">
-            <img class ="cardimg" src="${character.image}"></img>
-            </div>
-            <div class="textcard">
-            <h2>${character.name}</h2>
-            <h3>House: ${character.house}</h3>
-            <h3>Actor: ${character.actor}</h3>
-            <div class="h_container">
-            <i id="heart" class="far fa-heart"></i>
-            <i class="fa-solid fa-xmark"></i>
-            </div>
-            </div>
-            </div>
-        `;
-    }
-}).join('');
-    cardContainer.innerHTML = htmlString;
-};
-
 loadCharacters();
 
 
@@ -198,7 +174,7 @@ const displayChar = (characters) => {
     let i = 0;
     document.querySelectorAll(".card").forEach(element => {
         i++
-        setTimeout(function fade(){element.classList.add("fade")},100*i);
+        setTimeout(function fade(){element.classList.add("fade")},50*i);
         ;
     });
 }
@@ -317,7 +293,7 @@ document.getElementById("submitcard").addEventListener("click", function(e){
     let cardValue = cardChoose.value;
     let showCard ="";
     if(userList.length>0){
-    showCard = ` <div id="${userList[cardValue].rarity}" class="card">  
+    showCard = ` <div id="${userList[cardValue].rarity}" class="card fade">  
     <div class="imgcard">
     <img class ="cardimg" src="${userList[cardValue].image}"></img>
     </div>
@@ -334,3 +310,13 @@ document.getElementById("submitcard").addEventListener("click", function(e){
     e.preventDefault();
 })
 
+const burgerIcon =document.getElementById("burgericon");
+const menu = document.getElementById('menu');
+
+burgerIcon.addEventListener('click', function() {
+burgerIcon.classList.toggle('menuout');
+menu.classList.toggle('active');
+document.getElementById("home").classList.toggle('hide');
+document.getElementById("mycards").classList.toggle('hide');
+document.getElementById("archive").classList.toggle('hide');
+})
