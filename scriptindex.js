@@ -28,3 +28,18 @@ document.getElementById("home").classList.toggle('hide');
 document.getElementById("mycards").classList.toggle('hide');
 document.getElementById("archive").classList.toggle('hide');
 })
+
+const card = document.querySelector('.containfront');
+card.addEventListener('mousemove', rotate);
+card.addEventListener('mouseout', stopRotate);
+
+function rotate(e){
+  const cardItem = this.querySelector('.frontimage');
+  const halfWidth = cardItem.offsetWidth / 2;
+
+  cardItem.style.transform = 'rotateX('+ -(e.offsetY - halfWidth) / 20+'deg) rotateY('+ (e.offsetX - halfWidth) / 25+'deg)';
+}
+function stopRotate(){
+  const cardItem = this.querySelector('.frontimage');
+  cardItem.style.transform = 'rotate(0)';
+}

@@ -45,7 +45,7 @@ const loadCharacters = async () => {
             }
             hpList.forEach(element =>{
                 if(element.house==""){
-                    element.house = "Nothing";
+                    element.house = "None";
             }})
 
         });
@@ -77,7 +77,7 @@ const displayCharacters = (characters) => {
     let i = 0;
     document.querySelectorAll(".card").forEach(element => {
         i++
-        setTimeout(function fade(){element.classList.add("fade")},100*i);
+        setTimeout(function fade(){element.classList.add("fade")},50*i);
         ;
     });
 }
@@ -113,8 +113,8 @@ document.getElementById("Slytherin").addEventListener("click", function() {
 document.getElementById("Ravenclaw").addEventListener("click", function() {
     changeTheme("Ravenclaw");
 });
-document.getElementById("Nothing").addEventListener("click", function() {
-    changeTheme("Nothing");
+document.getElementById("None").addEventListener("click", function() {
+    changeTheme("None");
 });
 
 

@@ -71,9 +71,22 @@
         }
         async function displayCharacter() {
             const data = await fetchCharacter();
+            if(!data.wand){
+              data.wand = "Nothing"
+            }
+            if(!data.house){
+              data.house = "Nothing"
+            }
+            if(!data.patronus){
+              data.patronus = "Nothing"
+            }
             document.querySelector('#character').innerHTML =`
                 <h1>${data.name}</h1>
-                <img class="imgcard" src="${data.image}" alt="${data.name}"</img>
+                <div class="normalimgcontainer">
+                    <a>
+                        <img class ="normalimg" src="${data.image}"></img>
+                    </a>
+                </div>
                 <h2 class="single">House: ${data.house}</h2>
                 <h2 class="single">Actor: ${data.actor}</h2>
                 <h2 class="single">Blood: ${data.blood}</h2>
@@ -82,11 +95,21 @@
                 <h2 class="single">Wand: ${data.wand}</h2>
 
 
-                <a class="back" href="collection.html">Back</a>
+                <a class="back hide" href="collection.html">Back</a>
             `
             console.log(data);
         }
         displayCharacter()
+        const burgerIcon =document.getElementById("burgericon");
+        const menu = document.getElementById('menu');
+
+        burgerIcon.addEventListener('click', function() {
+        burgerIcon.classList.toggle('menuout');
+        menu.classList.toggle('active');
+        document.getElementById("home").classList.toggle('hide');
+        document.getElementById("mycards").classList.toggle('hide');
+        document.getElementById("archive").classList.toggle('hide');
+        })
     </script>
 </body>
 </html>

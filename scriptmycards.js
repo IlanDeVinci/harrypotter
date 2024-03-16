@@ -86,7 +86,7 @@ const loadCharacters = async () => {
         });
         hpList.forEach(element =>{
             if(element.house==""){
-                element.house = "Nothing";
+                element.house = "None";
             }
         })
         displayChar(userList);
@@ -97,42 +97,59 @@ loadCharacters();
 
 let tempChar ;
 let tempChar2 ;
-
-
+let boosterCd = false;
 let boosterb = document.getElementById("booster");
+
 boosterb.addEventListener("click", function(){
+    if(!boosterCd){
+    boosterCd=true;
+    setTimeout(() => {
+    boosterCd=false;
+    }, 10000);
+    userList.forEach(element => {
+        element.isnew="nah";
+    })
     for(let i = 0; i <3; i++){
-        tempChar = [hpList[Math.floor(Math.random()*hpList.length)]];
-        tempChar2 = JSON.parse(JSON.stringify(tempChar));
-        userList= userList.concat(tempChar2);
-    }
-    for(let i = userList.length-1; i > userList.length-4; i--){
-        userList[i].rarity="common";
-        userList[i].favorite="nofav";
-    }
-    if(Math.random()>0.5){
-        let random1 = userList.length-Math.floor(Math.random()*3)-1
-        userList[random1].rarity="rare";
-    }
-    if(Math.random()>0.8){
-        let random2 = userList.length-Math.floor(Math.random()*3)-1
-        userList[random2].rarity="legendary";
+        setTimeout(() => {
+            tempChar = [hpList[Math.floor(Math.random()*hpList.length)]];
+            tempChar[0].isnew="cardbooster";
+            tempChar[0].rarity="common";
+            tempChar[0].favorite="nofav";
+             let randomnum = Math.random();
+             if(randomnum>0.7){
+                tempChar[0].rarity="rare";
+             }
+             if(randomnum>0.9){
+                tempChar[0].rarity="legendary";
+             }
+             if(randomnum>0.7){
+                tempChar[0].rarity="mythical";
+             }
+            tempChar2 = JSON.parse(JSON.stringify(tempChar));
+            userList= tempChar2.concat(userList);
+            sortChars();
+            userList.forEach(element => {
+                element.isnew="nah";
+            })
+        }, i*3000);
     }
     searchBar.value = "";
     searchString = "";
-    sortChars();
-    /*
-    
-    userList.forEach((character,i)=> {
-        localStorage.setItem(`card${i}`, JSON.stringify(character));
+    setTimeout(() => {
+        userList.forEach(element => {
+            element.isnew="nah";
+        })
+        sortChars();
+    }, 9500);       
+            }
     }
-    */
-});
+);
 
 const displayChar = (characters) => {
+    
     let htmlString = "";
     characters.forEach((character,i)=> {htmlString = `${htmlString}
-        <div id="${character.rarity}" class="card">  
+        <div id="${character.rarity}" class="card ${character.isnew}">  
             <div class="imgcard">
                 <a href="single.html?slug=${character.slug}">
                     <img class ="cardimg" src="${character.image}"></img>
@@ -173,11 +190,21 @@ const displayChar = (characters) => {
     localStorage.setItem("cards", JSON.stringify(userList));
     let i = 0;
     document.querySelectorAll(".card").forEach(element => {
+        let speed = (1/userList.length)*1000
         i++
-        setTimeout(function fade(){element.classList.add("fade")},50*i);
+        setTimeout(function fade(){element.classList.add("fade")},speed*i);
         ;
     });
+    userList.forEach(element => {
+        element.isnew="nah";
+    });
 }
+
+function clearUserlist(){
+    userList=[];
+    displayChar(userList);
+}
+
 
 function displayRare() {
     document.querySelectorAll("Rare").forEach(element => {
@@ -186,6 +213,9 @@ function displayRare() {
     document.querySelectorAll("Legendary").forEach(element => {
         element.classList.toggle("legendary");
     });
+    document.querySelectorAll("Mythical").forEach(element => {
+        element.classList.toggle("mythical");
+    })
 }
 
 function ciao(element){
@@ -266,8 +296,8 @@ document.getElementById("Slytherin").addEventListener("click", function() {
 document.getElementById("Ravenclaw").addEventListener("click", function() {
     changeTheme("Ravenclaw");
 });
-document.getElementById("Nothing").addEventListener("click", function() {
-    changeTheme("Nothing");
+document.getElementById("None").addEventListener("click", function() {
+    changeTheme("None");
 });
 
 if(typeof localStorage['cards'] !== 'undefined'){
