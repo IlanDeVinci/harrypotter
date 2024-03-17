@@ -790,9 +790,11 @@ footer {
     }
     @keyframes Mythic{
       from{
+        filter: drop-shadow(0 0 10px white);
         background-position: 0 0;
       } 
       to {
+        filter: drop-shadow(0 0 0px white);
         background-position: 195px 195px;
       }
     }
@@ -993,9 +995,11 @@ footer {
     @keyframes Mythic{
       from{
         background-position: 0 0;
+        filter: drop-shadow(0 0 10px white);
       } 
       to {
         background-position: 140px 140px;
+        filter: drop-shadow(0 0 0px white);
       }
     }
     .bar {
