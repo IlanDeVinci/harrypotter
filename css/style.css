@@ -10,20 +10,20 @@
 :root{
   /* FONT */
   --font: 'Poppins', sans-serif;;
-
+  
   /* COLORS */
   --bg-color: #151320;
-  --conic-gradient: conic-gradient(
-    #FF2E2E,
-    #FF831E,
-    #FCFF51,
-    #58FF57,
-    #575FFF,
-    #D257FF,
-    #FF57E5,
-    #FF1556
+  --conic-gradient: conic-gradient( /*gradient arc-en-ciel pour le bouton Booster*/
+  #FF2E2E,
+  #FF831E,
+  #FCFF51,
+  #58FF57,
+  #575FFF,
+  #D257FF,
+  #FF57E5,
+  #FF1556
   );
-}
+} 
 
 #booster{
   text-align: center;
@@ -35,32 +35,32 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #250000;
-    width: 100%;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #250000;
+  width: 100%;
 }
 #title{
-  margin-top: 20px;
+  color: whitesmoke;
   font-family: HARRYP;
   font-size: 3rem;
-  border: 2px solid white;
-  border-radius: 20px;
   padding: 1%;
 }
+
 .intro{
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 2%;
-  padding-bottom: 2%;
+  padding: 2%;
   margin-bottom: 2%;
   background-color: ghostwhite;
   border-radius: 30px;
   font-size: 1.5rem;
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  border: 10px solid white;
 }
 .intro p{
   margin-top: 1%;
@@ -95,29 +95,30 @@ form {
   border-radius: 5vw;
   background-color: darkgray;
   width: 69%;
+  border: 5px solid white ;
 }
 #form input{
   width: 50%;
   border-radius: 10px;
+  padding: 10px;
+  margin: 0.5%;
 }
 
-#form input{
-  height: 20px;
-}
 header {
-    background-color: #141414;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  background-color: #141414;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 header div{
   display: flex;
   justify-content: space-between;
 }
 .logoimg{
+  display: flex;
   width: 50%;
 }
 .logo{
@@ -218,7 +219,6 @@ header form input{
   font-size: max(2vw,1.1rem); 
   border-radius: 10px;
   margin: 10px;
-  margin-top: 7px;
   padding: 10px;
   border: 0.25rem solid grey ;
   transition: all 0.3s ease-in-out;
@@ -230,12 +230,12 @@ header form input:hover{
   transform: scale(1.1);
 }
 nav {
-
-    padding: 5px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #nav{
   background-image: url(https://r4.wallpaperflare.com/wallpaper/932/891/825/hogwarts-legacy-video-games-dragon-owl-harry-potter-hd-wallpaper-9846ad3860f06c28e07ce1ae58d2244a.jpg);
@@ -245,7 +245,7 @@ nav {
 }
 nav h3{
   justify-self: center;
-
+  
 }
 nav input{
   font-size: large;
@@ -263,19 +263,19 @@ nav input{
   justify-content: space-evenly;
   align-items: center;
   box-shadow: 0 0 1em inset black;
-
+  
 }
 nav a {
-    font-family: HARRYP;
-    font-size: 2rem;
-    text-shadow: 0px 0px 5px #000;
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    margin: 10px 10px;
-	  box-shadow: 0px 0px 10px #000000;
-    transition: all 0.5s;
-    border-radius: 10px;
+  font-family: HARRYP;
+  font-size: 2rem;
+  text-shadow: 0px 0px 5px #000;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px 10px;
+  box-shadow: 0px 0px 10px #000000;
+  transition: all 0.5s;
+  border-radius: 10px;
 }
 
 nav a:hover{
@@ -292,42 +292,40 @@ nav a:hover{
   display: flex;
   justify-content: center;
   align-items: center;
-    width: 20vw;
-    height: 6em;
-    border-radius: 1em;
-    box-shadow: 0 1em 1em rgba(0,0,0, .5);
+  width: 20vw;
+  height: 6em;
+  border-radius: 1rem;
+  box-shadow: 0 1em 1em 0.1em rgba(0,0,0, .5);
+  position: relative;
+  overflow: hidden; /*pour cacher le reste du gradient arc-en-ciel*/
+  cursor: pointer;
   
-    position: relative;
-  
-    overflow: hidden;
-    cursor: pointer;
-  
-    transition: transform .3s ease;
+  transition: transform .3s ease;
+}
+
+.boostercontainer::before{
+  content: '';
+  position: absolute;
+  top:-110px;
+  width: 150%;
+  height: 350%;
+  background: var(--conic-gradient); /*le background arc en ciel*/
+}
+
+
+.boostercontainer:hover{
+  transform: scale(1.1);
+}
+
+.boostercontainer::before{
+  animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
+}
+
+@keyframes spin {
+  to{
+    transform: rotate(360deg); /*animation qui fait tourner*/
   }
-  
-  .boostercontainer::before{
-    content: '';
-    position: absolute;
-    top:-110px;
-    width: 150%;
-    height: 350%;
-    background: var(--conic-gradient);
-  }
-  
-  
-  .boostercontainer:hover{
-    transform: scale(1.1);
-  }
-  
-  .boostercontainer::before{
-    animation: spin 1.5s infinite linear;
-  }
-  
-  @keyframes spin {
-    to{
-      transform: rotate(360deg);
-    }
-  }
+}
 
 nav button{
   display: inline-block;
@@ -337,48 +335,36 @@ nav button{
   border-radius: 20px;
   transition: all 0.5s;
   box-shadow: 0 0 5em black;
-
+  
 }
 
 nav button:after {
   content: "";
   position: absolute;
   top: -120%;
-  left: -210%;
-  width: 230%;
+  left: -210%; /*positions de départ de l'effet shiny*/
+  width: 230%; 
   height: 230%;
-  opacity: 0;
-  transform: rotate(33deg);
-  
-  background: rgba(255, 255, 255, 0.13);
-  background: linear-gradient(
-    to right, 
-    rgba(255, 255, 255, 0.13) 0%,
-    rgba(255, 255, 255, 0.13) 77%,
-    rgba(255, 255, 255, 0.5) 92%,
-    rgba(255, 255, 255, 0.0) 100%
+  opacity: 0;  /*on le cache tant qu'on ne survole pas le bouton*/
+  background: linear-gradient(  /*un gradient transparent qui va donner un effet shiny sur le bouton quand on le survole*/
+  to right, 
+  rgba(255, 255, 255, 0.13) 0%,
+  rgba(255, 255, 255, 0.13) 77%,
+  rgba(255, 255, 255, 0.5) 92%,
+  rgba(255, 255, 255, 0.0) 100%
   );
 }
 
 
 nav button:hover:after {
-  transform: rotate(33deg)  scale(1.1);  
-  opacity: 1;
+  transform: rotate(0deg)  scale(1.1);  
+  opacity: 1; /*on le fait apparaître*/
   top: -30%;
-  left: -30%;
+  left: -30%; /*position de fin de l'effet shiny*/
   transition-property: left, top, opacity;
   transition-duration: 0.7s, 0.7s, 0.15s;
   transition-timing-function: ease-in-out;
 }
-
-/*---
-  active state
----*/
-
-nav button:active:after {
-  opacity: 0;
-}
-
 
 
 .modal-content{
@@ -386,37 +372,52 @@ nav button:active:after {
 }
 
 .modal-header{
-  border-radius: 50px;
-  padding: 3%;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  box-shadow: 0 0 0px 10px rgb(60, 0, 0);
+  
 }
 
 .modal-body{
   border-radius: 50px;
-
+  
 }
 
 .modal-footer{
-  border-radius: 50px;
-  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  box-shadow: 0 0 0px 10px rgb(60, 0, 0);
 }
 
 main {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-top: 20px;  
-    margin-bottom: 50px;
-    background-color: #250000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-top: 20px;  
+  margin-bottom: 50px;
+  background-color: #250000;
 }
 
 .cardContainer{
+  color: white;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.cardContainer h2{
+  font-size: 3rem;
+  font-family: HARRYP;
+  margin-top: 100%;
+  margin-bottom: 100%;
 }
 
 .textcard {
@@ -430,12 +431,12 @@ main {
 
 .houses{
   width: 90%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 0.1%;
+  padding-bottom: 0.1%;
   background-color: #530000;
   border: 5px solid #000;
   border-radius: 30px;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -449,6 +450,8 @@ main {
   width: 17%;
   border-radius: 30px;
   transition: all 0.2s;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .houses button:hover{
@@ -458,7 +461,6 @@ main {
 h1{
   font-family: HARRYP;
   font-size: 3rem;
-  margin-top: 10px;
 }
 .back{
   padding: 5%;
@@ -477,23 +479,23 @@ h1{
   margin-top: 3%;
 }
 .card {
-     align-items: center;
-    border: solid black;
-    width: 350px;
-    height: 600px;
-    background-color: rgb(255, 255, 255);
-    margin: 1vw;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    
+  align-items: center;
+  border: solid black;
+  width: 350px;
+  height: 600px;
+  background-color: rgb(255, 255, 255);
+  margin: 1vw;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  
 }
 
 .card.fade{
-  animation: fade 0.5s ease-in; 
+  animation: fade 0.5s ease-in; /*animation pour faire fade in les cartes*/
   opacity: 1;
 }
 
@@ -521,47 +523,46 @@ a{
 }
 #mythical{
   background-repeat: repeat;
- background: linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 154, 0, 1) 10%,
-    rgba(208, 222, 33, 1) 20%,
-    rgba(79, 220, 74, 1) 30%,
-    rgba(63, 218, 216, 1) 40%,
-    rgba(47, 201, 226, 1) 50%,
-    rgba(28, 127, 238, 1) 60%,
-    rgba(95, 21, 242, 1) 70%,
-    rgba(186, 12, 248, 1) 80%,
-    rgba(251, 7, 217, 1) 90%,
-    rgba(255, 0, 0, 1) 100%
-);
-    transition: all 0.3s ease;
-    animation: Mythic 3s linear infinite;
+  background: linear-gradient( /*un gradient arc en ciel linéaire pour les cartes mythiques*/
+  90deg,
+  rgba(255, 0, 0, 1) 0%,
+  rgba(255, 154, 0, 1) 10%,
+  rgba(208, 222, 33, 1) 20%,
+  rgba(79, 220, 74, 1) 30%,
+  rgba(63, 218, 216, 1) 40%,
+  rgba(47, 201, 226, 1) 50%,
+  rgba(28, 127, 238, 1) 60%,
+  rgba(95, 21, 242, 1) 70%,
+  rgba(186, 12, 248, 1) 80%,
+  rgba(251, 7, 217, 1) 90%,
+  rgba(255, 0, 0, 1) 100%
+  );
+  transition: all 0.3s ease;
+  animation: Mythic 3s linear infinite; /*on lance l'animation des cartes mythiques*/
 }
 
 @keyframes Mythic{
   from{
-    filter: drop-shadow(0 0 10px white);
-    background-position: 0 0;
+    filter: drop-shadow(0 0 10px white); /*le drop shadow donne un effet de pulsation de lumière*/
+    background-position: 0 0; /*position de départ de l'arc-en-ciel*/
   } 
   to {
     filter: drop-shadow(0 0 0px white);
-    background-position: 390px 390px;
+    background-position: 390px 390px; /*position de fin de l'arc-en-ciel*/
   }
 }
 
 .imgcard{
-   position: relative;
-   background-image: url(https://i.pinimg.com/564x/b9/fe/77/b9fe773abc3ece92bd13d77507e3f783.jpg);
-   background-blend-mode: multiply;
-   background-size: cover;
-   background-position-y: center;
-    height: 50%;
-    width: 100%;
-    display: flex;
-    
-    outline: double black 0.7rem;
-    border-radius: 10px;
+  position: relative;
+  background-image: url(https://i.pinimg.com/564x/b9/fe/77/b9fe773abc3ece92bd13d77507e3f783.jpg);
+  background-size: cover;
+  background-position-y: center;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  
+  outline: double black 0.7rem;
+  border-radius: 10px;
 }
 .normalimgcontainer{
   position: relative;
@@ -583,14 +584,14 @@ a{
   border-radius: 10px;
 }
 .cardimg{
-    position: absolute;
-    object-position: bottom;
-    bottom: 0;
-    height: 110%;
-    width: 100%;
-    object-fit: contain;
-    border-radius: 10px;
-    transition: all 0.25s ease-in-out;
+  position: absolute;
+  object-position: bottom;
+  bottom: 0;
+  height: 110%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: all 0.25s ease-in-out;
 }
 .cardimg:hover{
   transform: scale(1.05);
@@ -598,24 +599,24 @@ a{
 }
 
 @font-face {
-  font-family: HARRYP;
+  font-family: HARRYP; /*on crée une police Harry Potter*/
   src: url('HARRYP__.TTF');
 }
 
 .card h2 {
-    font-family: HARRYP;
-    font-size: 3.2rem;
-    margin-top: 15px;
-    margin-bottom: -10px;
-    text-shadow: 2px 2px 2px #ffffff;
+  font-family: HARRYP;
+  font-size: 3.2rem;
+  margin-top: 15px;
+  margin-bottom: -10px;
+  text-shadow: 2px 2px 2px #ffffff;
 }
 
 .card h3 {
-
-   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-   padding: 2%;
-   font-size: 0.9em;
-   color: #0c0c0c;
+  
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  font-size: 0.9em;
+  color: #0c0c0c;
 }
 
 #character{
@@ -640,454 +641,509 @@ a{
 .menu a{
   background-color: #410000;
 }
-
+.logoimg:hover{
+  transform: scale(1.05);
+}
 footer {
-    position: fixed;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    bottom: 0;
-    width: 100%;
-    z-index: 2;
+  position: fixed;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .floating-button {
-    text-align: center;
-    font-size: 1.5rem;
-    position: fixed;
-    bottom: 70px;
-    left: 40px;
-    background-color: #8f0000;
-    color: white;
-    border: 0.25rem solid black;
-    padding: 10px 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 120px;
-    height: 120px;
-    box-shadow: 2px 2px 3px #000000;
-    transition: 0.3s all ease-in-out;
-    z-index: 3;
-
+  text-align: center;
+  font-size: 1.5rem;
+  position: fixed; /* le bouton restera à la même position sur l'écran peu importe la scrollbar*/
+  bottom: 70px;
+  left: 40px;
+  background-color: #8f0000;
+  color: white;
+  border: 0.25rem solid black;
+  padding: 10px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  box-shadow: 2px 2px 3px #000000;
+  transition: 0.3s all ease-in-out;
+  z-index: 3; /*il doit être au dessus de la plupart des autres éléments*/
+  
 }
 
 .floating-button:hover{
-    background-color: #c95050;
+  background-color: #c95050;
 }
 
 .modal {
-    display: none;
-    position: fixed; 
-    z-index: 1;
-    padding-top: 0px; 
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    overflow: auto; 
-    transition: 0.5s all ease-in-out;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.8);
-    animation-name: fade;
-    animation-duration: 0.4s;
+  display: none;
+  position: fixed; 
+  z-index: 4; /*le modal doit être au dessus de tous les éléments*/
+  padding-top: 0px; 
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: scroll; /*on fait en sorte de pouvoir scroll même si le modal dépasse la hauteur de la page*/
+  transition: 0.5s all ease-in-out;
+  background-color: rgba(0,0,0,0.8);
+  animation-name: fade; 
+  animation-duration: 0.4s;
+}
+@keyframes fade {
+  from {opacity: 0;} /*animation de fade*/
+  to {opacity: 1;}
+}
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop; /*animation du modal depuis le haut de l'écran*/
+  animation-duration: 0.4s
+}
+
+
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0} /*animation qui commence en dehors du haut de l'écran*/
+  to {top:0; opacity:1}
+}
+
+.close {
+  
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  justify-content: space-around;
+  display: flex;
+  padding: 2px 16px;
+  background-color: #530000;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #530000;
+  color: white;
+}
+
+
+
+.Gryffindor{
+  background-color: #940a24;
+}
+.Slytherin{
+  background-color: #015c4b;
+}
+.Hufflepuff{
+  background-color: #fdb53d;
+  color: black;
+}
+.Ravenclaw{
+  background-color: #23326e;
+  color: black;
+}
+.None{
+  background-color: #61003d;
+  color: white;
+}
+.CommonSort{
+  background-color: grey;
+}
+.RareSort{
+  background-color: pink;
+}
+.LegendarySort{
+  background-color: goldenrod;
+}
+.MythicSort{
+  background-color: rgb(5, 238, 255);
+}
+
+
+
+
+
+@media screen and (max-width: 1000px){
+  .houses button{
+    font-size: 2rem;
   }
-  @keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
+}
+@media screen and (max-width: 900px){ /*pour le responsive, le css qui suit s'applique seulement aux petits écrans*/
+  #logobi{
+    display: block;
+  }
+  .intro{
+    font-size: 1rem;
+  }
+  .boostercontainer{
+    width: 40%;
+  }
+  nav input{
+    font-size: 1rem;
+  }
+  .menuout{
+    padding-top: 125px;
+  }
+  #character{
+    width: 50%;
+  }
+  @keyframes Mythic{
+    from{
+      filter: drop-shadow(0 0 10px white);/*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
+      background-position: 0 0;
+    } 
+    to {
+      filter: drop-shadow(0 0 0px white);
+      background-position: 195px 195px;
+    }
+  }
+  
+  #title{
+    font-size: 2rem;
+  }
+  .x_container{
+    height: 30px;
+    width: 30px;
+    line-height: 35px;
+  }
+  #x{
+    font-size: 20px;
+  }
+  .h_container{
+    height: 30px;
+    width: 30px;
+    line-height: 35px;
+  }
+  #heart{
+    font-size: 20px;
+  }
+  .imgcard{
+    margin-top: 5px;
+    width: 140px;
+    height: 120px;
+    border-radius: 10px;
+  }
+  h1{
+    font-size: 2rem;
+  }
+  single{
+    font-size: 1rem;
+  }
+  .modal{
+    padding-top: 0px;
   }
   .modal-content {
+    top: 0;
     position: relative;
     background-color: #fefefe;
     margin: auto;
     padding: 0;
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
   }
   
-
-  
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+  #booster{
+    font-size: 2rem;
+    
+  }
+  .houses button{
+    font-size: 1.5rem;
+  }
+  .textcard{
+    width: 100%;
+    margin-top:55px;
+    height: 25%;
+  }
+  .card{
+    position: relative;
+    border: solid black;
+    width: 175px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    margin: 0.01vw;
+    padding: 10px;
+    border-radius: 10px;   
+  }
+  .card h2 {
+    position: absolute;
+    font-family: HARRYP;
+    font-size: 1.5rem;
+    top: 132px;
+    text-shadow: 1px 1px 2px #ffffff;
+    
+  }
+  .card h3{
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    margin-top: 6px;
+  }
+  .logregi:hover{
+    transform: scale(1.1);
   }
   
-  .close {
+  .logregi{
+    font-family: HARRYP;
+  }
+  
+  footer {
+    position: relative;
+    background-color: #333;
     color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    bottom: 0;
+    width: 100%;
   }
   
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
+  .floating-button {
+    font-size: 1rem;
+    bottom: 20px;
+    left: 10px;
+    border: 0.25rem solid black;
+    padding: 10px 10px;
+    width: 90px;
+    height: 90px;
+    box-shadow: 2px 2px 3px #000000;
+    
+  }
+  
+  .burger{
+    display: flex;
+    justify-content:  space-around;
+    align-items: center;
+  }
+  
+  .burger-icon {
     cursor: pointer;
+    margin-top: 50%;
+    margin-bottom: 10%;
+  }
+  *[href$=".html" i]{
+    display: none;
   }
   
-  .modal-header {
-    padding: 2px 16px;
-    background-color: #530000;
-    color: white;
+  .bar {
+    width: 50px;
+    height: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 15%;
+    transition: 0.4s;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 5px black);
   }
   
-  .modal-body {padding: 2px 16px;}
-  
-  .modal-footer {
-    padding: 2px 16px;
-    background-color: #530000;
-    color: white;
+  .menu {
+    padding: 0px;
+    list-style-type: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+  }     
+  .menu.active {
+    padding-top:10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* top: 23px; */
+    top: 0vw;
+    left: 0;
+    width: 100%;
+    background-color: #250000;
+    box-shadow:0px 0px 0px 3px rgb(17, 0, 0) inset;
   }
+}
 
-
-
-  .Gryffindor{
-    background-color: #940a24;
+@media screen and (max-width: 500px){ 
+  footer{
+    font-size: 0.8rem;
   }
-  .Slytherin{
-    background-color: #015c4b;
+  header form input{
+    font-size: 0.9rem;
   }
-  .Hufflepuff{
-    background-color: #fdb53d;
-    color: black;
+  .intro{
+    font-size: 0.8rem;
   }
-  .Ravenclaw{
-    background-color: #23326e;
-    color: black;
+  .boostercontainer{
+    width: 30%;
   }
-  .Nothing{
-    background-color: #61003d;
-    color: white;
-  }
-
-
-
-  @media screen and (max-width: 1000px){
-    .houses button{
-      font-size: 2rem;
-    }
-  }
-  @media screen and (max-width: 900px){
-    .intro{
-      font-size: 1rem;
-    }
-    .boostercontainer{
-      width: 40%;
-    }
-    nav input{
-      font-size: 1rem;
-    }
-    .menuout{
-      padding-top: 100px;
-    }
-    #character{
-      width: 50%;
-    }
-    @keyframes Mythic{
-      from{
-        filter: drop-shadow(0 0 10px white);
-        background-position: 0 0;
-      } 
-      to {
-        filter: drop-shadow(0 0 0px white);
-        background-position: 195px 195px;
-      }
-    }
-    
-    #title{
-      font-size: 2rem;
-    }
-    .x_container{
-      height: 30px;
-      width: 30px;
-      line-height: 35px;
-    }
-    #x{
-      font-size: 20px;
-    }
-    .h_container{
-      height: 30px;
-      width: 30px;
-      line-height: 35px;
-    }
-    #heart{
-      font-size: 20px;
-    }
-    .imgcard{
-      margin-top: 5px;
-      width: 140px;
-      height: 120px;
-      border-radius: 10px;
-    }
-    h1{
-      font-size: 2rem;
-    }
-    single{
-      font-size: 1rem;
-    }
-    .modal{
-      padding-top: 0px;
-    }
-    .modal-content {
-      top: 0;
-      position: relative;
-      background-color: #fefefe;
-      margin: auto;
-      padding: 0;
-      width: 80%;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-      -webkit-animation-name: animatetop;
-      -webkit-animation-duration: 0.4s;
-      animation-name: animatetop;
-      animation-duration: 0.4s
-    }
-    
-    #booster{
-      font-size: 2rem;
-
-    }
-    .houses button{
-      font-size: 1.5rem;
-    }
-    .textcard{
-      width: 100%;
-      margin-top:55px;
-      height: 25%;
-    }
-    .card{
-      position: relative;
-      border: solid black;
-      width: 175px;
-      height: 300px;
-      background-color: rgb(255, 255, 255);
-      margin: 0.01vw;
-      padding: 10px;
-      border-radius: 10px;   
-     }
-     .card h2 {
-      position: absolute;
-      font-family: HARRYP;
-      font-size: 1.5rem;
-      top: 132px;
-      text-shadow: 1px 1px 2px #ffffff;
-
-    }
-    .card h3{
-      font-size: 0.8rem;
-      margin-bottom: 5px;
-      margin-top: 6px;
-    }
-    .logregi:hover{
-      transform: scale(1.1);
-    }
-
-    .logregi{
-      font-family: HARRYP;
-    }
-
-    footer {
-      position: relative;
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      bottom: 0;
-      width: 100%;
-  }
-  
-    .floating-button {
-      text-align: center;
-      font-size: 1rem;
-      position: fixed;
-      bottom: 20px;
-      left: 10px;
-      background-color: #8f0000;
-      color: white;
-      border: 0.25rem solid black;
-      padding: 10px 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      width: 90px;
-      height: 90px;
-      box-shadow: 2px 2px 3px #000000;
-      transition: 0.3s all ease-in-out;
-  
-  }
-
-    .burger{
-        display: flex;
-        justify-content:  space-around;
-        align-items: center;
-      }
-    
-      .burger-icon {
-        cursor: pointer;
-        margin-top: 50%;
-        margin-bottom: 10%;
-      }
-    *[href$=".html" i]{
-        display: none;
-    }
-
-      .bar {
-        width: 50px;
-        height: 10px;
-        background-color: rgb(255, 255, 255);
-        margin-top: 15%;
-        transition: 0.4s;
-        border-radius: 5px;
-        filter: drop-shadow(0 0 5px black);
-      }
-      
-      .menu {
-        padding: 0px;
-        list-style-type: none;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.5s ease-in;
-      }     
-       .menu.active {
-        padding-top:10px;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        /* top: 23px; */
-        top: 0vw;
-        left: 0;
-        width: 100%;
-        background-color: #250000;
-        box-shadow:0px 0px 0px 3px rgb(17, 0, 0) inset;
-    }
-  }
-
-  @media screen and (max-width: 500px){ 
-    .intro{
-      font-size: 0.8rem;
-    }
-    .boostercontainer{
-      width: 30%;
-    }
-    .floating-button {
-      font-size: 0.6rem;
-      height: 60px;
-      width: 60px;
-    }
-    .round-time-bar div {
-      width: 90vw;
-    }
-    .imgcard{
-      outline: double black 0.35rem;
-
-    }
-    .menuout{
-      padding-top: 150px;
-    }
-    #character{
-      width: 80%;
-    }
-    @keyframes Mythic{
-      from{
-        background-position: 0 0;
-        filter: drop-shadow(0 0 10px white);
-      } 
-      to {
-        background-position: 140px 140px;
-        filter: drop-shadow(0 0 0px white);
-      }
-    }
-    .bar {
-      width: 40px;
-      height: 9px;
-      background-color: rgb(255, 255, 255);
-      margin-top: 12%;
-      transition: 0.4s;
-      border-radius: 5px;
-    }
-    .logo{
-      width: 30%;
-    }
-    #title{
-      font-size: 1.5rem;
-    }
-    .imgcard{
-      width: 100px;
-      height: 80px;
-    }
-    .card{
-      border: solid black;
-      width: 120px;
-      height: 200px;
-      background-color: rgb(255, 255, 255);
-      margin: 0.01vw;
-      padding: 10px;
-      border-radius: 10px;   
-     }
-     .card h2 {
-      font-family: HARRYP;
-      font-size: 1.1rem;
-      top: 86px;  
-    }
-    .card h3{
-      font-size: 0.5rem;
-      margin-top: 1px;
-    }
-    .textcard{
-      width: 100%;
-      margin-top:35px;
-      height: 25%;
-    }
-  }
-  .card.cardbooster.fade{
-    animation: cardBooster 3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    z-index: 1;
-  }
-  .card.cardbooster.appear{
-    animation: cardBooster 3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    z-index: 1;
-  }
-
-
-  #mythical.cardbooster{
-    animation: MythicCardBooster 3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    z-index: 1;
-  }
-
-  .round-time-bar {
-    display: block;
-    margin: 0.5rem;
-    overflow: hidden;
+  .floating-button {
+    font-size: 0.6rem;
+    height: 69px;
+    width: 69px;
   }
   .round-time-bar div {
-    border-radius: 5px;
-    width: 30vw;
-    height: 10px;
-    animation: roundtime calc(var(--duration) * 1s) linear forwards;
-    transform-origin: left center;
-    background: linear-gradient(to bottom, red, #900);
+    width: 90vw;
   }
-  
-  .round-time-bar[data-style="smooth"] div {
-    animation: roundtime calc(var(--duration) * 1s) linear forwards;
+  .imgcard{
+    outline: double black 0.35rem;
+    
   }
-
-  @keyframes roundtime {
+  .menuout{
+    padding-top: 150px;
+  }
+  #character{
+    width: 80%;
+  }
+  @keyframes Mythic{
+    from{
+      background-position: 0 0;
+      filter: drop-shadow(0 0 10px white);
+    } 
     to {
-      transform: scaleX(0);
+      background-position: 140px 140px;/*la même animation qu'auparavant, mais une position différente car les cartes sont plus petites*/
+      filter: drop-shadow(0 0 0px white);
     }
   }
+  .bar {
+    width: 40px;
+    height: 9px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 12%;
+    transition: 0.4s;
+    border-radius: 5px;
+  }
+  .logo{
+    width: 30%;
+  }
+  #title{
+    font-size: 1.5rem;
+  }
+  .imgcard{
+    width: 100px;
+    height: 80px;
+  }
+  .card{
+    border: solid black;
+    width: 120px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    margin: 0.01vw;
+    padding: 10px;
+    border-radius: 10px;   
+  }
+  .card h2 {
+    font-family: HARRYP;
+    font-size: 1.1rem;
+    top: 86px;  
+  }
+  .card h3{
+    font-size: 0.5rem;
+    margin-top: 1px;
+  }
+  .textcard{
+    width: 100%;
+    margin-top:35px;
+    height: 25%;
+  }
+}
+.card.cardbooster.fade{/*css spécifique pour avoir la bonne priorité*/
+  animation: cardBooster 3s ease-in-out; /*lance l'animation d'ouverture de booster pour la carte*/
+  transition: all 0.3s ease-in-out;
+  z-index: 1; /*passe au dessus des autres cartes*/
+}
+.card.cardbooster.appear{/*pareil qu'au dessus*/
+  animation: cardBooster 3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
 
 
-@keyframes MythicCardBooster {
+#mythical.cardbooster{/*pareil pour les cartes mythiques*/
+  animation: MythicCardBooster 3s ease-in-out;/*lance l'animation d'ouverture de booster pour la carte mythique*/
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.round-time-bar {
+  display: block;
+  margin: 0.5rem;
+  overflow: hidden;
+}
+.round-time-bar div {
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 30vw;
+  height: 10px;
+  animation: roundtime calc(var(--duration) * 1s) linear forwards; /*lance l'animation de la barre cooldown d'ouverture de booster. Le calc calcule la duration de l'animation en fonction de --duration.*/
+  transform-origin: left center;
+  background: linear-gradient(to bottom, rgb(255, 0, 93), rgb(255, 93, 206));
+}
+
+
+@keyframes roundtime {
+  to {
+    transform: scaleX(0); /*animation qui réduit la taille horizontale de la barre cooldown à 0*/
+  }
+}
+
+
+@keyframes MythicCardBooster {/*animation d'ouverture de booster de carte*/
+  0%{
+    position: fixed; /*position fixe sur l'écran*/
+    transform: scale(0.5); /*commence moitié taille*/
+    top: -100vh; /*commence en dehors de l'écran*/
+  }
+  30%{
+    transform: scale(1.1); /*on fait grossir la carte*/
+    top: 5vh; /*on bouge la carte au centre de l'écran*/
+  }
+  60%{
+    transform: scale(0.9);
+    top: 15vh;
+  }
+  80%{
+    position:fixed;
+    top: 100vh; /*on fait sortie la carte de l'écran par le bas*/
+    transform: scale(0.5); /*on rapetisse la carte*/
+    opacity: 1;
+  }
+  81%{
+    position: relative; /*on remet la carte à sa position relative comme les autres cartes*/
+    opacity: 0; /*on fait disparaître la carte*/
+  }
+  100%{
+    opacity: 1; /*on fait apparaître la carte*/
+    transform: scale(1); /*on lui donne sa taille normale*/
+  }
+  from{
+    filter: drop-shadow(0 0 10px white);
+    background-position: 0 0; /*on anime également le fond arc-en-ciel*/
+  } 
+  to {
+    filter: drop-shadow(0 0 0px white);
+    background-position: 390px 390px;
+  }
+}
+
+
+
+@keyframes cardBooster{ /*même animation que la précédente mais sans le fond animé ou le glow*/
   0%{
     position: fixed;
     transform: scale(0.5);
@@ -1118,59 +1174,12 @@ footer {
     position: relative;
     transform: scale(1);
   }
-  from{
-    filter: drop-shadow(0 0 10px white);
-    background-position: 0 0;
-  } 
-  to {
-    filter: drop-shadow(0 0 0px white);
-    background-position: 390px 390px;
-  }
 }
-
-
-
-  @keyframes cardBooster{
-    0%{
-      position: fixed;
-      transform: scale(0.5);
-      top: -100vh;
-    }
-    30%{
-      position: fixed;
-      transform: scale(1.1);
-      top: 5vh;
-    }
-    60%{
-      position: fixed;
-      transform: scale(0.9);
-      top: 15vh;
-    }
-    80%{
-      position:fixed;
-      top: 100vh;
-      transform: scale(0.5);
-      opacity: 1;
-    }
-    81%{
-      position: relative;
-      opacity: 0;
-    }
-    100%{
-      opacity: 1;
-      position: relative;
-      transform: scale(1);
-    }
-  }
-  
 
 .hide {
-    display:block;
+  display:block; /*fait apparaître le menu hamburger*/
 }
 
-.hide, *[href$=".html" i]{
-    display:hide;
-}
 .menu{
   display: flex;
   justify-content: start;
@@ -1184,7 +1193,7 @@ footer {
 
 
 .containfront{
-  perspective: 2000px;
+  perspective: 2000px; /*perspective pour l'image de la front page*/
   transform-style: preserve-3d;
 }
 .frontimage{
@@ -1194,7 +1203,7 @@ footer {
 
 .deadgebutton{
   background-color: gray;
-  pointer-events: none;
+  pointer-events: none; /*enlève la possibilité de cliquer sur l'objet*/
 }
 #booster.deadgebutton{
   pointer-events: none;
