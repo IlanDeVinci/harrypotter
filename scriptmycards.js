@@ -19,7 +19,6 @@ window.onclick = function(event) {
   }
 
 let userList = [];
-
 let filteredCharacters = [];
 let filteredSortedList = [];
 let searchString = "";
@@ -99,31 +98,56 @@ let tempChar ;
 let tempChar2 ;
 let boosterCd = false;
 let boosterb = document.getElementById("booster");
+let cdBar = document.getElementById("cdbar");
+let boostContainer = document.getElementById("boostercontainer");
+
 
 boosterb.addEventListener("click", function(){
+   
+    if(!(currentFilter=="none")){
+        changeTheme(currentFilter);
+        currentFilter = "none";
+    }
     if(!boosterCd){
     boosterCd=true;
+    boostContainer.classList.add("deadgebutton");
+    boosterb.classList.add("deadgebutton");
+    cdBar.classList.remove("round-time-bar");
+    cdBar.offsetWidth;
+    cdBar.classList.add("round-time-bar");
+    cdBar.style = "--duration: 10;";
+    searchBar.disabled=true;
     setTimeout(() => {
     boosterCd=false;
+    searchBar.disabled=false;
+    boosterb.classList.remove("deadgebutton");
+    boostContainer.classList.remove("deadgebutton");
     }, 10000);
     userList.forEach(element => {
         element.isnew="nah";
     })
     for(let i = 0; i <3; i++){
         setTimeout(() => {
+            pity +=1;
+            localStorage.setItem("pity", pity);
             tempChar = [hpList[Math.floor(Math.random()*hpList.length)]];
             tempChar[0].isnew="cardbooster";
             tempChar[0].rarity="common";
             tempChar[0].favorite="nofav";
              let randomnum = Math.random();
-             if(randomnum>0.7){
+             if(randomnum>0.75){
                 tempChar[0].rarity="rare";
              }
              if(randomnum>0.9){
                 tempChar[0].rarity="legendary";
              }
-             if(randomnum>0.7){
+             if(randomnum>0.975){
                 tempChar[0].rarity="mythical";
+                pity = 0;
+             }
+             if(pity>25){
+                tempChar[0].rarity="mythical";
+                pity = 0;
              }
             tempChar2 = JSON.parse(JSON.stringify(tempChar));
             userList= tempChar2.concat(userList);
@@ -140,7 +164,7 @@ boosterb.addEventListener("click", function(){
             element.isnew="nah";
         })
         sortChars();
-    }, 9500);       
+    }, 9050);       
             }
     }
 );
@@ -188,13 +212,22 @@ const displayChar = (characters) => {
         document.getElementById(`heartc${i}`).classList.toggle("favorited");
     }
     localStorage.setItem("cards", JSON.stringify(userList));
-    let i = 0;
-    document.querySelectorAll(".card").forEach(element => {
-        let speed = (1/userList.length)*1000
-        i++
-        setTimeout(function fade(){element.classList.add("fade")},speed*i);
-        ;
-    });
+    if(!boosterCd){
+        let i = 0;
+        document.querySelectorAll(".card").forEach(element => {
+            let speed = (1/userList.length)*1000
+            i++
+            setTimeout(function fade(){element.classList.add("fade")},speed*i);
+            ;
+        });
+    } else{
+        document.querySelectorAll(".card").forEach(element =>{
+            element.classList.add("appear");
+        }
+
+        )
+    }
+  
     userList.forEach(element => {
         element.isnew="nah";
     });
@@ -202,6 +235,7 @@ const displayChar = (characters) => {
 
 function clearUserlist(){
     userList=[];
+    favNumber=0;
     displayChar(userList);
 }
 
@@ -285,19 +319,23 @@ function changeTheme(name){
 }
 
 document.getElementById("Gryffindor").addEventListener("click", function() {
-    changeTheme("Gryffindor");
+    if(!boosterCd){    changeTheme("Gryffindor");
+}
 });
 document.getElementById("Hufflepuff").addEventListener("click", function() {
-    changeTheme("Hufflepuff");
+    if(!boosterCd){    changeTheme("Hufflepuff");
+}
 });
 document.getElementById("Slytherin").addEventListener("click", function() {
-    changeTheme("Slytherin");
+    if(!boosterCd){    changeTheme("Slytherin");
+}
 });
 document.getElementById("Ravenclaw").addEventListener("click", function() {
-    changeTheme("Ravenclaw");
+    if(!boosterCd){  changeTheme("Ravenclaw");}
 });
 document.getElementById("None").addEventListener("click", function() {
-    changeTheme("None");
+    if(!boosterCd){    changeTheme("None");
+}
 });
 
 if(typeof localStorage['cards'] !== 'undefined'){
@@ -305,6 +343,12 @@ if(typeof localStorage['cards'] !== 'undefined'){
     sortChars(userList);
     displayRare();
     sortUserlist();
+}
+
+let pity = 0;
+
+if(typeof localStorage['pity'] !== 'undefined'){
+    pity = JSON.parse(localStorage.getItem("pity"));
 }
 
 let cardChoose = document.getElementById("cardchoose");

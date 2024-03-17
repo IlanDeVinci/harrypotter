@@ -37,7 +37,7 @@ function rotate(e){
   const cardItem = this.querySelector('.frontimage');
   const halfWidth = cardItem.offsetWidth / 2;
 
-  cardItem.style.transform = 'rotateX('+ -(e.offsetY - halfWidth) / 20+'deg) rotateY('+ (e.offsetX - halfWidth) / 25+'deg)';
+  cardItem.style.transform = 'rotateX('+ -(e.offsetY - halfWidth) / 25+'deg) rotateY('+ (e.offsetX - halfWidth) / 25+'deg)';
 }
 function stopRotate(){
   const cardItem = this.querySelector('.frontimage');
