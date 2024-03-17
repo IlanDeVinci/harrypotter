@@ -8,26 +8,41 @@
 </head>
 
 <body id="body">
-
+    
     <header>
-        <div class="logo">
+        <a href="index.html" class="logo" id="logobi">
             <img class="logoimg" src="images/picmix.com_968628.png" alt="">
-        </div>
+        </a>
         <h1 id="title">Card Archive</h1>
         
     </header>
     <div class="modal" id="modal">
         <div class="modal-content">
             <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>Trading Interface</h2>
+                <div></div>
+                <h2>Trading Interface</h2>
+                <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-            <p>Choose some card to trade</p>
-            <p>Choose some user to trade with</p>
+                <form>
+                    <label for="cardchoose">Choose a card:</label>
+                    <select id="cardchoose" name="cars">
+                        <option value="card">Card</option>
+                    </select>
+                    <input id="submitcard" type="submit" value="Submit">
+                </form>
+                <div id="showCard"></div>
+                
+                <form>
+                    <label for="userschoose">Choose some user to trade with:</label>
+                    <select name="users" id="userschoose">
+                        <option value="Slapilou">Slapilou</option>
+                    </select>
+                    <input type="submit" id="submitExchange" value="Confirm">
+                </form>
             </div>
             <div class="modal-footer">
-            <h3>Footer</h3>
+                <h3>Footer</h3>
             </div>
         </div>
     </div>
@@ -49,17 +64,15 @@
         <input type="search" name="search" id="search" placeholder="search here">
     </nav>
     <main id="main">
-    <div class="houses">
-        <button type="button" id="Gryffindor">Gryffindor</button>
-        <button type="button" id="Hufflepuff">Hufflepuff</button>
-        <button type="button" id="Slytherin">Slytherin</button>
-        <button type="button" id="Ravenclaw">Ravenclaw</button>
-        <button type="button" id="None">None</button>
-
-
-    </div>
-    <div id="cardContainer" class="cardContainer">
-    </div>
+        <div class="houses">
+            <button type="button" data-="sortbutton" id="Gryffindor">Gryffindor</button>
+            <button type="button" data-="sortbutton" id="Hufflepuff">Hufflepuff</button>
+            <button type="button" data-="sortbutton" id="Slytherin">Slytherin</button>
+            <button type="button" data-="sortbutton" id="Ravenclaw">Ravenclaw</button>
+            <button type="button" data-="sortbutton" id="None">None</button>
+        </div>
+        <div id="cardContainer" class="cardContainer">
+        </div>
     </main>
     <footer>
         &copy; 2024 Slapilou Harry Potter Card Website
@@ -68,8 +81,8 @@
     <button class="floating-button" id="floating-button">
         Trading
     </button>
-
-<script src="script.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 
 </html>

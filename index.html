@@ -8,11 +8,11 @@
 </head>
 
 <body>
-
+    
     <header>
-        <div class="logo">
+        <a href="index.html" class="logo" id="logobi">
             <img class="logoimg" src="images/picmix.com_968628.png" alt="">
-        </div>
+        </a>
         <h1 id="title">HOME</h1>
         <div>
             <form class="logregi" action="register.html">
@@ -26,15 +26,30 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>Trading Interface</h2>
+                <div></div>
+                <h2>Trading Interface</h2>
+                <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-            <p>Choose some card to trade</p>
-            <p>Choose some user to trade with</p>
+                <form>
+                    <label for="cardchoose">Choose a card:</label>
+                    <select id="cardchoose" name="cars">
+                        <option value="card">Card</option>
+                    </select>
+                    <input id="submitcard" type="submit" value="Submit">
+                </form>
+                <div id="showCard"></div>
+                
+                <form>
+                    <label for="userschoose">Choose some user to trade with:</label>
+                    <select name="users" id="userschoose">
+                        <option value="Slapilou">Slapilou</option>
+                    </select>
+                    <input type="submit" id="submitExchange" value="Confirm">
+                </form>
             </div>
             <div class="modal-footer">
-            <h3>Footer</h3>
+                <h3>Footer</h3>
             </div>
         </div>
     </div>
@@ -52,28 +67,28 @@
             </ul>
         </div>
     </nav>
-
-
+    
+    
     <main>
         <div class="intro">
             <p>Welcome to the Harry Potter Trading Card website !</p>
             <p>Create your account to get started.</p>
-        <div class="containfront">
-            <img class="frontimage" src="https://images.ctfassets.net/usf1vwtuqyxm/71J6YPxNauhFABbjHpGluJ/631bd6980b0a430d5b476ef331abb2b5/release_1_hogwarts.png" alt="">
-        </div>
-
+            <div class="containfront">
+                <img class="frontimage" src="https://images.ctfassets.net/usf1vwtuqyxm/71J6YPxNauhFABbjHpGluJ/631bd6980b0a430d5b476ef331abb2b5/release_1_hogwarts.png" alt="">
+            </div>
+            
         </div>
     </main>
-
+    
     <footer>
         &copy; 2024 Slapilou Harry Potter Card Website
     </footer>
-
+    
     <button class="floating-button" id="floating-button">
         Trading
     </button>
-
-<script src="scriptindex.js"></script>
+    
+    <script src="scriptindex.js"></script>
 </body>
 
 </html>
