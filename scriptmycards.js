@@ -140,6 +140,7 @@ boosterb.addEventListener("click", function() {
         document.querySelectorAll("button").forEach(element => {
             element.classList.add("deadgebutton") //rend inutilisable tous les boutons pour la durée du pack opening
         })
+        document.querySelector("#boostercontainer").classList.add("deadgebutton");
         //supprimer et re-ajouter une class à la barre cooldown permet de réinitialiser son animation
         cdBar.classList.remove("round-time-bar");
         cdBar.offsetWidth;
