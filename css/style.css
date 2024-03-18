@@ -307,9 +307,9 @@ nav a:hover{
   border-radius: 20px;
   content: '';
   position: absolute;
-  top:-110px;
-  width: 350%;
-  height: 350%;
+  top:-150px;
+  width: 450%;
+  height: 450%;
   background: var(--conic-gradient); /*le background arc en ciel*/
   animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
 }
