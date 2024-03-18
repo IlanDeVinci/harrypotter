@@ -345,6 +345,7 @@ nav button:after {
   left: -210%; /*positions de départ de l'effet shiny*/
   width: 230%; 
   height: 230%;
+  border-radius: 20px;
   opacity: 0;  /*on le cache tant qu'on ne survole pas le bouton*/
   background: linear-gradient(  /*un gradient transparent qui va donner un effet shiny sur le bouton quand on le survole*/
   to right, 
@@ -357,6 +358,7 @@ nav button:after {
 
 
 nav button:hover:after {
+  border-radius: 20px;
   transform: rotate(0deg)  scale(1.1);  
   opacity: 1; /*on le fait apparaître*/
   top: -30%;
