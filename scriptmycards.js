@@ -153,7 +153,7 @@ boosterb.addEventListener("click", function() {
             document.querySelectorAll("button").forEach(element => {
                 element.classList.remove("deadgebutton")
             })
-            document.querySelector("#boostercontainer").classList.add("deadgebutton");
+            document.querySelector("#boostercontainer").classList.remove("deadgebutton");
         }, 10000);
         userList.forEach(element => {
             element.isnew = "no";//ajoute l'attribut isnew=no à toutes les anciennes cartes(nécessaire pour attribuer les animations)
