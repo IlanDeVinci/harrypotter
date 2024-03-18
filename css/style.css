@@ -294,7 +294,7 @@ nav a:hover{
   align-items: center;
   width: 20vw;
   height: 6em;
-  border-radius: 1rem;
+  border-radius: 20px;
   box-shadow: 0 1em 1em 0.1em rgba(0,0,0, .5);
   position: relative;
   overflow: hidden; /*pour cacher le reste du gradient arc-en-ciel*/
@@ -304,21 +304,18 @@ nav a:hover{
 }
 
 .boostercontainer::before{
+  border-radius: 20px;
   content: '';
   position: absolute;
   top:-110px;
-  width: 150%;
+  width: 350%;
   height: 350%;
   background: var(--conic-gradient); /*le background arc en ciel*/
+  animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
 }
-
 
 .boostercontainer:hover{
   transform: scale(1.1);
-}
-
-.boostercontainer::before{
-  animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
 }
 
 @keyframes spin {
@@ -345,7 +342,6 @@ nav button:after {
   left: -210%; /*positions de départ de l'effet shiny*/
   width: 230%; 
   height: 230%;
-  border-radius: 20px;
   opacity: 0;  /*on le cache tant qu'on ne survole pas le bouton*/
   background: linear-gradient(  /*un gradient transparent qui va donner un effet shiny sur le bouton quand on le survole*/
   to right, 
@@ -358,7 +354,6 @@ nav button:after {
 
 
 nav button:hover:after {
-  border-radius: 20px;
   transform: rotate(0deg)  scale(1.1);  
   opacity: 1; /*on le fait apparaître*/
   top: -30%;
@@ -1207,6 +1202,10 @@ footer {
   background-color: gray;
   pointer-events: none; /*enlève la possibilité de cliquer sur l'objet*/
 }
+#boostercontainer::before .deadgebutton{
+  background-color: gray;
+  animation: none;
+}
 #booster.deadgebutton{
   pointer-events: none;
 }
@@ -1214,4 +1213,10 @@ footer {
   pointer-events: none;
   animation: none;
   opacity: 0;
+}
+
+@media screen and (min-width: 1500px) {
+  .boostercontainer::before{
+    height: 1000%;
+}
 }
