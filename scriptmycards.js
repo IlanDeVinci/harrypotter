@@ -254,7 +254,7 @@ const displayChar = (characters) => {
     }
     localStorage.setItem("cards", JSON.stringify(userList)); //on stocke les cartes dans le localstorage
     if (!boosterCd) {
-        let i = 0;
+        let i = -1;
         document.querySelectorAll(".card").forEach(element => {//on fait apparaître graduellement les cartes avec un effet de fade
             let speed = (1 / characters.length) * 1000 //plus il y a de cartes, plus elles s'afficheront vite
             i++
