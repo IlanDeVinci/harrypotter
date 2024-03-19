@@ -317,13 +317,12 @@ nav a {
   box-shadow: 0 1em 1em 0.1em rgba(0,0,0, .5);
   position: relative;
   overflow: hidden; /*pour cacher le reste du gradient arc-en-ciel*/
-  cursor: pointer;
   
   transition: transform .3s ease;
 }
 
 .boostercontainer::before{
-  border-radius: 20px;
+  overflow: hidden;
   content: '';
   position: absolute;
   top:-150px;
@@ -1018,6 +1017,18 @@ footer {
 }
 
 @media screen and (max-width: 500px){ 
+  .x_container{
+    font-size: 0.5rem;
+    line-height: 35px;
+    width: 26px;
+    height: 26px;
+  }
+  .h_container{
+    font-size: 0.5rem;
+    line-height: 35px;
+    width: 26px;
+    height: 26px;
+  }
   footer{
     font-size: 0.8rem;
   }
