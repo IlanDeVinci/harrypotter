@@ -171,7 +171,7 @@ option{
   transition: all 0.5s;
 }
 
-.h_container:hover{
+.h_container:hover, .h_container:active{
   opacity: 0.7;
   transform: scale(1.1);
 }
@@ -188,7 +188,7 @@ option{
   margin: 1%;
   transition: all 0.5s;
 }
-.x_container:hover{
+.x_container:hover, .x_container:active{
   opacity: 0.7;
   transform: scale(1.1);  
 }
@@ -197,7 +197,7 @@ option{
   color: white;
   font-size: 25px;
 }
-#x:hover{
+#x:hover, #x:active{
   color:grey;
 }
 
@@ -207,7 +207,7 @@ option{
   color: white;
   font-size: 25px;
 }
-#heart:hover{
+#heart:hover, #x:active{
   color:grey;
 }
 
@@ -225,7 +225,7 @@ header form input{
   font-family: HARRYP;
 }
 
-header form input:hover{
+header form input:hover, header form input:active{
   opacity: 0.9;
   transform: scale(1.1);
 }
@@ -278,7 +278,7 @@ nav a {
   border-radius: 10px;
 }
 
-nav a:hover{
+nav a:hover, nav a:active{
   opacity: .9;
   background-color: #000000;
   transform: scale(1.1);
@@ -314,7 +314,7 @@ nav a:hover{
   animation: spin 1.5s infinite linear; /*on lance l'animation qui fait tourner le fond arc-en-ciel*/
 }
 
-.boostercontainer:hover{
+.boostercontainer:hover, .boostercontainer:active{
   transform: scale(1.1);
 }
 
@@ -353,7 +353,7 @@ nav button:after {
 }
 
 
-nav button:hover:after {
+nav button:hover:after, nav button:active::after {
   transform: rotate(0deg)  scale(1.1);  
   opacity: 1; /*on le fait apparaître*/
   top: -30%;
@@ -451,7 +451,7 @@ main {
   margin-bottom: 1%;
 }
 
-.houses button:hover{
+.houses button:hover, .houses button:active{
   opacity: 0.8; ;
 }
 
@@ -500,7 +500,7 @@ h1{
   opacity: 1;
 }
 
-button:hover{
+button:hover, button:active{
   transform: scale(1.069);
 }
 
@@ -590,7 +590,7 @@ a{
   border-radius: 10px;
   transition: all 0.25s ease-in-out;
 }
-.cardimg:hover{
+.cardimg:hover, .cardimg:active{
   transform: scale(1.05);
   filter: drop-shadow(0 0 10px white);
 }
@@ -638,7 +638,7 @@ a{
 .menu a{
   background-color: #410000;
 }
-.logoimg:hover{
+.logoimg:hover, .logoimg:active{
   transform: scale(1.05);
 }
 footer {
@@ -673,7 +673,7 @@ footer {
   
 }
 
-.floating-button:hover{
+.floating-button:hover, .floating-button:active{
   background-color: #c95050;
 }
 
@@ -898,7 +898,7 @@ footer {
     margin-bottom: 5px;
     margin-top: 6px;
   }
-  .logregi:hover{
+  .logregi:hover, .logregi:active{
     transform: scale(1.1);
   }
   
